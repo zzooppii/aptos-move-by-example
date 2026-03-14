@@ -1,0 +1,63 @@
+INCLUDING DEPENDENCY AptosFramework
+INCLUDING DEPENDENCY AptosStdlib
+INCLUDING DEPENDENCY MoveStdlib
+BUILDING FlashLoanArbitrage
+warning: unused alias
+  ┌─ /Users/harvey/Desktop/personal/Move/flash_loan_arbitrage/sources/coins.move:3:26
+  │
+3 │     use aptos_framework::account;
+  │                          ^^^^^^^ Unused 'use' of alias 'account'. Consider removing it
+
+Running Move unit tests
+[ FAIL    ] 0xcafe::arbitrage_tests::test_failed_arbitrage_reverts
+[ FAIL    ] 0xcafe::arbitrage_tests::test_successful_arbitrage
+
+Test failures:
+
+Failures in 0xcafe::arbitrage_tests:
+
+┌── test_failed_arbitrage_reverts ──────
+│ error[E11001]: test failure
+│     ┌─ /Users/harvey/.move/https___github_com_aptos-labs_aptos-core_git_mainnet/aptos-move/framework/aptos-framework/sources/coin.move:328:9
+│     │
+│ 328 │         assert!(
+│     │         ^^^^^^ Test did not error as expected. Expected test to abort with code 1 originating in the module 000000000000000000000000000000000000000000000000000000000000cafe::arbitrage but instead it aborted with code 393243 (category: NOT_FOUND, reason: 27) originating in the module 0000000000000000000000000000000000000000000000000000000000000001::coin rooted here
+│     ·
+│ 392 │     public(friend) fun ensure_paired_metadata<CoinType>(): Object<Metadata> acquires CoinConversionMap, CoinInfo {
+│     │                        ---------------------- In this function in 0x1::coin
+│ 
+│ 
+│ stack trace
+│ 	coin::coin_to_fungible_asset(/Users/harvey/.move/https___github_com_aptos-labs_aptos-core_git_mainnet/aptos-move/framework/aptos-framework/sources/coin.move:411)
+│ 	coin::deposit(/Users/harvey/.move/https___github_com_aptos-labs_aptos-core_git_mainnet/aptos-move/framework/aptos-framework/sources/coin.move:900)
+│ 	coins::mint_coin_a(/Users/harvey/Desktop/personal/Move/flash_loan_arbitrage/sources/coins.move:56)
+│ 	arbitrage_tests::setup_test(/Users/harvey/Desktop/personal/Move/flash_loan_arbitrage/sources/arbitrage_tests.move:30)
+│ 	arbitrage_tests::test_failed_arbitrage_reverts(/Users/harvey/Desktop/personal/Move/flash_loan_arbitrage/sources/arbitrage_tests.move:81)
+│ 
+└──────────────────
+
+
+┌── test_successful_arbitrage ──────
+│ error[E11001]: test failure
+│     ┌─ /Users/harvey/.move/https___github_com_aptos-labs_aptos-core_git_mainnet/aptos-move/framework/aptos-framework/sources/coin.move:328:9
+│     │
+│ 328 │         assert!(
+│     │         ^^^^^^ Test was not expected to error, but it aborted with code 393243 (category: NOT_FOUND, reason: 27) originating in the module 0000000000000000000000000000000000000000000000000000000000000001::coin rooted here
+│     ·
+│ 392 │     public(friend) fun ensure_paired_metadata<CoinType>(): Object<Metadata> acquires CoinConversionMap, CoinInfo {
+│     │                        ---------------------- In this function in 0x1::coin
+│ 
+│ 
+│ stack trace
+│ 	coin::coin_to_fungible_asset(/Users/harvey/.move/https___github_com_aptos-labs_aptos-core_git_mainnet/aptos-move/framework/aptos-framework/sources/coin.move:411)
+│ 	coin::deposit(/Users/harvey/.move/https___github_com_aptos-labs_aptos-core_git_mainnet/aptos-move/framework/aptos-framework/sources/coin.move:900)
+│ 	coins::mint_coin_a(/Users/harvey/Desktop/personal/Move/flash_loan_arbitrage/sources/coins.move:56)
+│ 	arbitrage_tests::setup_test(/Users/harvey/Desktop/personal/Move/flash_loan_arbitrage/sources/arbitrage_tests.move:30)
+│ 	arbitrage_tests::test_successful_arbitrage(/Users/harvey/Desktop/personal/Move/flash_loan_arbitrage/sources/arbitrage_tests.move:50)
+│ 
+└──────────────────
+
+Test result: FAILED. Total tests: 2; passed: 0; failed: 2
+{
+  "Error": "Move unit tests failed"
+}
